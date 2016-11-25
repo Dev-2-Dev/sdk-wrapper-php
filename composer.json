@@ -1,0 +1,34 @@
+{
+  "name": "devtodev/statApi",
+  "description": "Devtodev stat api PHP client.",
+  "version": "0.0.1",
+  "type": "library",
+  "homepage": "https://www.devtodev.com/",
+  "keywords": [
+    "devtodev",
+    "api",
+    "analytic"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Devtodev Team",
+      "email": "info@devtodev.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.2",
+    "ext-curl": "*",
+    "ext-json": "*"
+  },
+  "require-dev": {
+    "behat/behat": "2.4.*@stable"
+  },
+  "config": {
+    "bin-dir": "bin/"
+  },
+  "autoload": {
+    "classmap": ["src/Devtodev/"]
+  },
+  "minimum-stability": "dev"
+}
