@@ -1,10 +1,19 @@
 <?php
 
 class DevtodevStatApi {
+
+    private static $errors = [];
+
+    public static function getErrors(){
+        return self::$errors;
+    }
+
     public static function init($params = []) {
         $configInstance = DevtodevConfig::getInstance();
         $configInstance->setParams($params);
     }
+
+
 
     /**
      * Tracks custom events.
@@ -34,6 +43,7 @@ class DevtodevStatApi {
         $customEventAction->setEventName($eventName);
         $customEventAction->setParams($eventParams);
         $customEventAction->run();
+        self::$errors = $customEventAction->getErrors();
     }
 
     public static function realPayment() {
