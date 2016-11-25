@@ -48,5 +48,9 @@ class DevtodevConfig {
         if(isset($config['api_key'])) {
             $this->setApiKey($config['api_key']);
         }
+
+        if(isset($config['main_user_id'])) {
+            $this->setMainUserId($config['main_user_id']);
+        }
     }
 }

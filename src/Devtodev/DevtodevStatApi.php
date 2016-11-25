@@ -6,10 +6,6 @@ class DevtodevStatApi {
         $configInstance->setParams($params);
     }
 
-    public static function Test(){
-        var_dump('test');die();
-    }
-
     /**
      * Tracks custom events.
      *
