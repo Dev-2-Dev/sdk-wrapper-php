@@ -74,13 +74,19 @@ final class CustomEventAction extends BaseApiAction {
             self::TYPE_DOUBLE => [],
             self::TYPE_STRING => []
         ];
-
+        $i = 0;
+        $maxCountParam = self::MAX_COUNT_PARAM;
         foreach($this->params as $eventItem) {
+            if ($i >= $maxCountParam){
+                $this->appendToErrors("Max count event parameters is {$maxCountParam}");
+                break;
+            }
             $name = $eventItem['name'];
             $type = $eventItem['type'];
             $value = $eventItem['value'];
 
-            $dataEvents[$type][$name] = $value;
+            $dataEvents[$type][][$name] = $value;
+            $i++;
         }
 
         $actionData = [
