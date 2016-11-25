@@ -35,6 +35,7 @@ abstract class BaseApiAction {
     }
 
     protected function validate() {
+        $isValidate = true;
         $mainUserId = $this->getMainUserId();
         if(empty($mainUserId))
             throw new DevtodevException("Parameter 'mainUserId' is missing");
@@ -42,6 +43,8 @@ abstract class BaseApiAction {
         $actionCode = $this->getActionCode();
         if(empty($actionCode))
             throw new DevtodevException("Parameter 'actionCode' is missing");
+
+        return $isValidate;
     }
 
     public function getErrors() {
@@ -65,6 +68,9 @@ abstract class BaseApiAction {
             if($this->isValidate) {
                 $this->setRequestData();
                 ApiRequest::send($this->requestData);
+            }
+            else {
+                throw new DevtodevException("No valid params");
             }
         } catch(DevtodevException $e) {
             $this->appendToErrors($e->getMessage());
