@@ -24,7 +24,7 @@ class ApiRequest {
 
     protected function request($requestData = []) {
 
-        $url = "{$this->getUrl()}/?api={$this->getApiKey()}";
+        $url = "{$this->getUrl()}?api={$this->getApiKey()}";
 
         $curlHandle = curl_init($url);
         curl_setopt($curlHandle, CURLOPT_HTTPHEADER, array('Content-Type: text/plain;charset=UTF-8'));
@@ -51,7 +51,7 @@ class ApiRequest {
     }
 
     protected function prepareResponse() {
-        $url = "{$this->getUrl()}/?api={$this->getApiKey()}";
+        $url = "{$this->getUrl()}?api={$this->getApiKey()}";
         echo $url;
         echo json_encode($this->responseData);
     }
