@@ -51,6 +51,8 @@ class ApiRequest {
     }
 
     protected function prepareResponse() {
-        var_dump($this->responseData);
+        $url = "{$this->getUrl()}/?api={$this->getApiKey()}";
+        echo $url;
+        echo json_encode($this->responseData);
     }
 }

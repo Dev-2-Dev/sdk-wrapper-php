@@ -44,6 +44,7 @@ final class DevtodevStatApi {
         $customEventAction->setParams($eventParams);
         $customEventAction->run();
         self::$errors = $customEventAction->getErrors();
+        echo json_encode(self::$errors);
     }
 
     public static function realPayment() {
