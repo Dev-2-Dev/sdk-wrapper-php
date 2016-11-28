@@ -67,7 +67,8 @@ abstract class BaseApiAction {
             $this->isValidate = ($this->validate() && $this->validateParams());
             if($this->isValidate) {
                 $this->setRequestData();
-                ApiRequest::send($this->requestData);
+                $request = new ApiRequest();
+                $request->send($this->requestData);
             }
             else {
                 throw new DevtodevException("No valid params");

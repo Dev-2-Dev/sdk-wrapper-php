@@ -1,6 +1,6 @@
 <?php
 
-class DevtodevStatApi {
+final class DevtodevStatApi {
 
     private static $errors = [];
 

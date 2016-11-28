@@ -1,8 +1,9 @@
 <?php
 
 class DevtodevConfig {
-    const API_BASE_URL = 'https://api.paymentwall.com/api';
+    const API_BASE_URL = 'https://api.devtodev.com/stat';
     const API_VERSION = '1';
+
     private static $instance;
     private $apiBaseUrl = self::API_BASE_URL;
     private $apiKey = '';
@@ -26,6 +27,10 @@ class DevtodevConfig {
 
     public function setApiBaseUrl($url = '') {
         $this->apiBaseUrl = $url;
+    }
+
+    public function getApiUrl(){
+        return "{$this->getApiBaseUrl()}/{$this->getApiVersion()}/";
     }
 
     public function getApiKey() {
