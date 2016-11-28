@@ -47,8 +47,6 @@ final class DevtodevStatApi {
         $customEventAction->setEventName($eventName);
         $customEventAction->setParams($eventParams);
         $customEventAction->run();
-        //TODO: LOG REMOVE
-        echo json_encode(self::$errors);
     }
 
     public static function realPayment() {
