@@ -77,7 +77,7 @@ final class CustomEventAction extends BaseApiAction {
         $i = 0;
         $maxCountParam = self::MAX_COUNT_PARAM;
         foreach($this->params as $eventItem) {
-            if ($i >= $maxCountParam){
+            if($i >= $maxCountParam) {
                 DevtodevStatApi::appendToErrors("Max count event parameters is {$maxCountParam}");
                 break;
             }
@@ -92,17 +92,19 @@ final class CustomEventAction extends BaseApiAction {
         $actionData = [
             'name' => $this->getEventName(),
             'entries' => [
-                't1' => $this->getTime(),
-                'level' => 1,
-                'p' => [
-                    't1' => $dataEvents
+                [
+                    't1' => $this->getTime(),
+                    'level' => 1,
+                    'p' => [
+                        't1' => $dataEvents
+                    ]
                 ]
             ]
         ];
 
         $this->requestData = [
             $mainUserId => [
-                $actionCode => $actionData
+                $actionCode => [$actionData]
             ]
         ];
     }
