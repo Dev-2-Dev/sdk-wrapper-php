@@ -3,6 +3,7 @@
 abstract class BaseApiAction {
     private $isValidate = false;
     protected $params = [];
+    protected $validateParams = [];
     protected $requestData = [];
     protected $responseData = [];
     protected $errors = [];

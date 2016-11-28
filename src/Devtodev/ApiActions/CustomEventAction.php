@@ -34,8 +34,7 @@ final class CustomEventAction extends BaseApiAction {
     }
 
     protected function validateParams() {
-        $isValidate = true;
-
+        $this->validateParams = [];
         if(empty($this->eventName))
             throw new DevtodevException("Parameter 'eventName' is missing.");
 
@@ -47,36 +46,36 @@ final class CustomEventAction extends BaseApiAction {
 
                 if(empty($name) || empty($type) || empty($value)) {
                     DevtodevStatApi::appendToErrors("One of several required parameters missing");
-                    break;
+                    continue;
                 }
 
                 $maxParamNameLength = self::MAX_LENGTH_PARAM_NAME;
                 if(mb_strlen($name) > $maxParamNameLength) {
                     DevtodevStatApi::appendToErrors("Parameter 'name' is too large. Maximum length of {$maxParamNameLength} characters");
-                    break;
+                    continue;
                 }
 
                 if(!in_array($type, $this->getParamAvailableTypes())) {
                     DevtodevStatApi::appendToErrors("Parameter with type '{$type}' is not supported.");
-                    break;
+                    continue;
                 }
+
+                $this->validateParams[] = $eventItem;
             }
         }
 
-        return $isValidate;
+        return !empty($this->validateParams);
     }
 
     protected function buildRequestData() {
         $mainUserId = $this->getMainUserId();
         $actionCode = $this->getActionCode();
 
-        $dataEvents = [
-            self::TYPE_DOUBLE => [],
-            self::TYPE_STRING => []
-        ];
         $i = 0;
+        $dataEvents = [];
+
         $maxCountParam = self::MAX_COUNT_PARAM;
-        foreach($this->params as $eventItem) {
+        foreach($this->validateParams as $eventItem) {
             if($i >= $maxCountParam) {
                 DevtodevStatApi::appendToErrors("Max count event parameters is {$maxCountParam}");
                 break;
