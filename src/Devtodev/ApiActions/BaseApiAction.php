@@ -47,14 +47,6 @@ abstract class BaseApiAction {
         return $isValidate;
     }
 
-    public function getErrors() {
-        return $this->errors;
-    }
-
-    protected function appendToErrors($errorText = '') {
-        $this->errors[] = $errorText;
-    }
-
     protected abstract function getActionCode();
 
     protected abstract function validateParams();
@@ -74,7 +66,7 @@ abstract class BaseApiAction {
                 throw new DevtodevException("No valid params");
             }
         } catch(DevtodevException $e) {
-            $this->appendToErrors($e->getMessage());
+            DevtodevStatApi::appendToErrors($e->getMessage());
         }
     }
 }

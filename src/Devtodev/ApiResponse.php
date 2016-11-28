@@ -15,10 +15,6 @@ class ApiResponse {
         $status = (!empty($this->responseData) && isset($this->responseData['status'])) ? $this->responseData['status'] : 0;
         $header = (!empty($this->responseData) && isset($this->responseData['header'])) ? $this->responseData['header'] : [];
 
-        $url = "{$this->getUrl()}?api={$this->getApiKey()}";
-        echo $url;
-        echo json_encode($this->responseData);
-
         if($status != 200) {
             $errorMessage = (!empty($header) && isset($header['error_message'])) ? $header['error_message'] : '';
             if(!empty($errorMessage))

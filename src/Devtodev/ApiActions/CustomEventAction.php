@@ -46,18 +46,18 @@ final class CustomEventAction extends BaseApiAction {
                 $value = (isset($eventItem['value'])) ? $eventItem['value'] : false;
 
                 if(empty($name) || empty($type) || empty($value)) {
-                    $this->appendToErrors("One of several required parameters missing");
+                    DevtodevStatApi::appendToErrors("One of several required parameters missing");
                     break;
                 }
 
                 $maxParamNameLength = self::MAX_LENGTH_PARAM_NAME;
                 if(mb_strlen($name) > $maxParamNameLength) {
-                    $this->appendToErrors("Parameter 'name' is too large. Maximum length of {$maxParamNameLength} characters");
+                    DevtodevStatApi::appendToErrors("Parameter 'name' is too large. Maximum length of {$maxParamNameLength} characters");
                     break;
                 }
 
                 if(!in_array($type, $this->getParamAvailableTypes())) {
-                    $this->appendToErrors("Parameter with type '{$type}' is not supported.");
+                    DevtodevStatApi::appendToErrors("Parameter with type '{$type}' is not supported.");
                     break;
                 }
             }
@@ -78,7 +78,7 @@ final class CustomEventAction extends BaseApiAction {
         $maxCountParam = self::MAX_COUNT_PARAM;
         foreach($this->params as $eventItem) {
             if ($i >= $maxCountParam){
-                $this->appendToErrors("Max count event parameters is {$maxCountParam}");
+                DevtodevStatApi::appendToErrors("Max count event parameters is {$maxCountParam}");
                 break;
             }
             $name = $eventItem['name'];

@@ -8,6 +8,10 @@ final class DevtodevStatApi {
         return self::$errors;
     }
 
+    public static function appendToErrors($errorText = '') {
+        self::$errors[] = $errorText;
+    }
+
     public static function init($params = []) {
         $configInstance = DevtodevConfig::getInstance();
         $configInstance->setParams($params);
@@ -43,7 +47,8 @@ final class DevtodevStatApi {
         $customEventAction->setEventName($eventName);
         $customEventAction->setParams($eventParams);
         $customEventAction->run();
-        self::$errors = $customEventAction->getErrors();
+
+        echo json_encode($eventParams);
         echo json_encode(self::$errors);
     }
 

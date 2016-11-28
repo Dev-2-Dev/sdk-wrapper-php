@@ -4,7 +4,11 @@ class ApiRequest {
     private $responseData = [];
 
     public function send($requestData = []) {
-        $this->request($requestData);
+        try{
+            $this->request($requestData);
+        } catch(DevtodevException $e){
+            DevtodevStatApi::appendToErrors($e->getMessage());
+        }
     }
 
     protected function getUrl() {
@@ -51,8 +55,8 @@ class ApiRequest {
     }
 
     protected function prepareResponse() {
-        $url = "{$this->getUrl()}?api={$this->getApiKey()}";
-        echo $url;
-        echo json_encode($this->responseData);
+        $response = new ApiResponse();
+        $response->setResponseData($this->responseData);
+        $response->prepareResponse();
     }
 }
