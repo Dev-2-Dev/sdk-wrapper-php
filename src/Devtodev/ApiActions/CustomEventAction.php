@@ -85,7 +85,7 @@ final class CustomEventAction extends BaseApiAction {
             $type = $eventItem['type'];
             $value = $eventItem['value'];
 
-            $dataEvents[$type][][$name] = $value;
+            $dataEvents[$type][$name] = $value;
             $i++;
         }
 
