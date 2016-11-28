@@ -66,7 +66,7 @@ final class CustomEventAction extends BaseApiAction {
         return $isValidate;
     }
 
-    protected function setRequestData() {
+    protected function buildRequestData() {
         $mainUserId = $this->getMainUserId();
         $actionCode = $this->getActionCode();
 

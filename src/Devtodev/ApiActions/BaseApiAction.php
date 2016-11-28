@@ -51,14 +51,14 @@ abstract class BaseApiAction {
 
     protected abstract function validateParams();
 
-    protected abstract function setRequestData();
+    protected abstract function buildRequestData();
 
     public function run() {
         try {
             $this->errors = [];
             $this->isValidate = ($this->validate() && $this->validateParams());
             if($this->isValidate) {
-                $this->setRequestData();
+                $this->buildRequestData();
                 $request = new ApiRequest();
                 $request->send($this->requestData);
             }

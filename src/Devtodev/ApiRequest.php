@@ -4,6 +4,8 @@ class ApiRequest {
     private $responseData = [];
 
     public function send($requestData = []) {
+        //TODO: LOG REMOVE
+        echo json_encode($requestData);
         try{
             $this->request($requestData);
         } catch(DevtodevException $e){

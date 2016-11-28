@@ -47,8 +47,7 @@ final class DevtodevStatApi {
         $customEventAction->setEventName($eventName);
         $customEventAction->setParams($eventParams);
         $customEventAction->run();
-
-        echo json_encode($eventParams);
+        //TODO: LOG REMOVE
         echo json_encode(self::$errors);
     }
 
