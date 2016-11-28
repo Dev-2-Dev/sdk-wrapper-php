@@ -1,10 +1,9 @@
 <?php
 
 final class DevtodevStatApi {
-
     private static $errors = [];
 
-    public static function getErrors(){
+    public static function getErrors() {
         return self::$errors;
     }
 
@@ -12,12 +11,17 @@ final class DevtodevStatApi {
         self::$errors[] = $errorText;
     }
 
+    /**
+     * Init params
+     *
+     * @param array $params
+     * @param string params.api_key - devtodev API key
+     * @param string params.main_user_id - devtodev main user id
+     */
     public static function init($params = []) {
         $configInstance = DevtodevConfig::getInstance();
         $configInstance->setParams($params);
     }
-
-
 
     /**
      * Tracks custom events.

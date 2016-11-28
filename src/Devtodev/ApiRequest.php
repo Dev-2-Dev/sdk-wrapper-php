@@ -4,9 +4,9 @@ class ApiRequest {
     private $responseData = [];
 
     public function send($requestData = []) {
-        try{
+        try {
             $this->request($requestData);
-        } catch(DevtodevException $e){
+        } catch(DevtodevException $e) {
             DevtodevStatApi::appendToErrors($e->getMessage());
         }
     }

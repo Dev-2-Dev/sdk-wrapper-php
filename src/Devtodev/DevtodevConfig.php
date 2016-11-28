@@ -3,7 +3,6 @@
 class DevtodevConfig {
     const API_BASE_URL = 'https://api.devtodev.com/stat';
     const API_VERSION = '1';
-
     private static $instance;
     private $apiBaseUrl = self::API_BASE_URL;
     private $apiKey = '';
@@ -29,7 +28,7 @@ class DevtodevConfig {
         $this->apiBaseUrl = $url;
     }
 
-    public function getApiUrl(){
+    public function getApiUrl() {
         return "{$this->getApiBaseUrl()}/v{$this->getApiVersion()}/";
     }
 
@@ -41,11 +40,11 @@ class DevtodevConfig {
         $this->apiKey = $key;
     }
 
-    public function getMainUserId(){
+    public function getMainUserId() {
         return $this->mainUserId;
     }
 
-    public function setMainUserId($mainUserId = ''){
+    public function setMainUserId($mainUserId = '') {
         $this->mainUserId = $mainUserId;
     }
 
