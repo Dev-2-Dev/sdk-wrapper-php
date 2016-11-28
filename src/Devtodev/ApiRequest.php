@@ -1,7 +1,6 @@
 <?php
 
 class ApiRequest {
-
     private $responseData = [];
 
     public function send($requestData = []) {
@@ -18,9 +17,16 @@ class ApiRequest {
             ->getApiVersion();
     }
 
+    protected function getApiKey() {
+        return DevtodevConfig::getInstance()
+            ->getApiKey();
+    }
+
     protected function request($requestData = []) {
 
-        $curlHandle = curl_init($this->getUrl());
+        $url = "{$this->getUrl()}/?api={$this->getApiKey()}";
+
+        $curlHandle = curl_init($url);
         curl_setopt($curlHandle, CURLOPT_HTTPHEADER, array('Content-Type: text/plain;charset=UTF-8'));
         curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curlHandle, CURLOPT_POST, true);

@@ -30,7 +30,7 @@ class DevtodevConfig {
     }
 
     public function getApiUrl(){
-        return "{$this->getApiBaseUrl()}/{$this->getApiVersion()}/";
+        return "{$this->getApiBaseUrl()}/v{$this->getApiVersion()}/";
     }
 
     public function getApiKey() {
