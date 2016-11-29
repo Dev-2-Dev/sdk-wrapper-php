@@ -2,7 +2,7 @@
 namespace Devtodev\StatApi\ApiAction;
 use Devtodev\StatApi\ApiException;
 use Devtodev\StatApi\Config;
-use Devtodev\StatApi\StatApi;
+use Devtodev\StatApi\ApiClient;
 use Devtodev\StatApi\Request;
 
 abstract class BaseApiAction {
@@ -72,7 +72,7 @@ abstract class BaseApiAction {
                 throw new ApiException("No valid params");
             }
         } catch(ApiException $e) {
-            StatApi::appendToErrors($e->getMessage());
+            ApiClient::appendToErrors($e->getMessage());
         }
     }
 }

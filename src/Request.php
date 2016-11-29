@@ -8,7 +8,7 @@ class Request {
         try {
             $this->sendRequest($requestData);
         } catch(ApiException $e) {
-            StatApi::appendToErrors($e->getMessage());
+            ApiClient::appendToErrors($e->getMessage());
         }
     }
 

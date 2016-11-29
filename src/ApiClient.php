@@ -4,7 +4,7 @@ namespace Devtodev\StatApi;
 
 use Devtodev\StatApi\ApiAction\CustomEventAction;
 
-final class StatApi {
+final class ApiClient {
     private static $errors = [];
 
     public static function getErrors() {
