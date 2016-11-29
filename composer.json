@@ -23,7 +23,8 @@
   },
   "autoload": {
     "psr-4": {
-      "Devtodev\\StatApi\\": "src/"
+      "Devtodev\\StatApi\\": "src/",
+      "Devtodev\\StatApi\\ApiActions\\": "src/ApiActions/"
     }
   },
   "minimum-stability": "dev"
