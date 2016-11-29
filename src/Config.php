@@ -1,6 +1,7 @@
 <?php
+namespace Devtodev\StatApi;
 
-class DevtodevConfig {
+class Config {
     const API_BASE_URL = 'https://api.devtodev.com/stat';
     const API_VERSION = '1';
     private static $instance;

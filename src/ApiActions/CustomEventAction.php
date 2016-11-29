@@ -1,4 +1,7 @@
 <?php
+namespace Devtodev\StatApi\ApiAction;
+use Devtodev\StatApi\ApiException;
+use Devtodev\StatApi\StatApi;
 
 final class CustomEventAction extends BaseApiAction {
     const MAX_LENGTH_EVENT_NAME = 72;
@@ -18,7 +21,7 @@ final class CustomEventAction extends BaseApiAction {
             $this->eventName = $eventName;
         }
         else {
-            throw new DevtodevException("Parameter 'eventName' is too large. Maximum length of {$maxLength} characters");
+            throw new ApiException("Parameter 'eventName' is too large. Maximum length of {$maxLength} characters");
         }
     }
 
@@ -36,7 +39,7 @@ final class CustomEventAction extends BaseApiAction {
     protected function validateParams() {
         $this->validateParams = [];
         if(empty($this->eventName))
-            throw new DevtodevException("Parameter 'eventName' is missing.");
+            throw new ApiException("Parameter 'eventName' is missing.");
 
         foreach($this->params as $eventItem) {
             if(is_array($eventItem)) {
@@ -45,18 +48,18 @@ final class CustomEventAction extends BaseApiAction {
                 $value = (isset($eventItem['value'])) ? $eventItem['value'] : false;
 
                 if(empty($name) || empty($type) || empty($value)) {
-                    DevtodevStatApi::appendToErrors("One of several required parameters missing");
+                    StatApi::appendToErrors("One of several required parameters missing");
                     continue;
                 }
 
                 $maxParamNameLength = self::MAX_LENGTH_PARAM_NAME;
                 if(mb_strlen($name) > $maxParamNameLength) {
-                    DevtodevStatApi::appendToErrors("Parameter 'name' is too large. Maximum length of {$maxParamNameLength} characters");
+                    StatApi::appendToErrors("Parameter 'name' is too large. Maximum length of {$maxParamNameLength} characters");
                     continue;
                 }
 
                 if(!in_array($type, $this->getParamAvailableTypes())) {
-                    DevtodevStatApi::appendToErrors("Parameter with type '{$type}' is not supported.");
+                    StatApi::appendToErrors("Parameter with type '{$type}' is not supported.");
                     continue;
                 }
 
@@ -77,7 +80,7 @@ final class CustomEventAction extends BaseApiAction {
         $maxCountParam = self::MAX_COUNT_PARAM;
         foreach($this->validateParams as $eventItem) {
             if($i >= $maxCountParam) {
-                DevtodevStatApi::appendToErrors("Max count event parameters is {$maxCountParam}");
+                StatApi::appendToErrors("Max count event parameters is {$maxCountParam}");
                 break;
             }
             $name = $eventItem['name'];

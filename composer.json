@@ -21,14 +21,10 @@
     "ext-curl": "*",
     "ext-json": "*"
   },
-  "require-dev": {
-    "behat/behat": "2.4.*@stable"
-  },
-  "config": {
-    "bin-dir": "bin/"
-  },
   "autoload": {
-    "classmap": ["src/Devtodev/"]
+    "psr-4": {
+      "Devtodev\\StatApi\\": "src/"
+    }
   },
   "minimum-stability": "dev"
 }

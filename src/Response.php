@@ -1,6 +1,7 @@
 <?php
+namespace Devtodev\StatApi;
 
-class ApiResponse {
+class Response {
     private $responseData = [];
 
     public function getResponseData() {
@@ -17,7 +18,7 @@ class ApiResponse {
 
         if($status != 200) {
             $errorMessage = (!empty($header) && isset($header['error_message'])) ? $header['error_message'] : 'Bad response status';
-            throw new DevtodevException($errorMessage, $status);
+            throw new ApiException($errorMessage, $status);
         }
     }
 }

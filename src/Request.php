@@ -1,32 +1,33 @@
 <?php
+namespace Devtodev\StatApi;
 
-class ApiRequest {
+class Request {
     private $responseData = [];
 
     public function send($requestData = []) {
         try {
-            $this->request($requestData);
-        } catch(DevtodevException $e) {
-            DevtodevStatApi::appendToErrors($e->getMessage());
+            $this->sendRequest($requestData);
+        } catch(ApiException $e) {
+            StatApi::appendToErrors($e->getMessage());
         }
     }
 
     protected function getUrl() {
-        return DevtodevConfig::getInstance()
+        return Config::getInstance()
             ->getApiUrl();
     }
 
     protected function getApiVersion() {
-        return DevtodevConfig::getInstance()
+        return Config::getInstance()
             ->getApiVersion();
     }
 
     protected function getApiKey() {
-        return DevtodevConfig::getInstance()
+        return Config::getInstance()
             ->getApiKey();
     }
 
-    protected function request($requestData = []) {
+    protected function sendRequest($requestData = []) {
 
         $url = "{$this->getUrl()}?api={$this->getApiKey()}";
 
@@ -55,7 +56,7 @@ class ApiRequest {
     }
 
     protected function prepareResponse() {
-        $response = new ApiResponse();
+        $response = new Response();
         $response->setResponseData($this->responseData);
         $response->prepareResponse();
     }

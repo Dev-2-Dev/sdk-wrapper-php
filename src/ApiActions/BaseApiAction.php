@@ -1,4 +1,9 @@
 <?php
+namespace Devtodev\StatApi\ApiAction;
+use Devtodev\StatApi\ApiException;
+use Devtodev\StatApi\Config;
+use Devtodev\StatApi\StatApi;
+use Devtodev\StatApi\Request;
 
 abstract class BaseApiAction {
     private $isValidate = false;
@@ -9,17 +14,17 @@ abstract class BaseApiAction {
     protected $errors = [];
 
     protected function getMainUserId() {
-        return DevtodevConfig::getInstance()
+        return Config::getInstance()
             ->getMainUserID();
     }
 
     protected function getApiBaseUrl() {
-        return DevtodevConfig::getInstance()
+        return Config::getInstance()
             ->getApiBaseUrl();
     }
 
     protected function getApiKey() {
-        return DevtodevConfig::getInstance()
+        return Config::getInstance()
             ->getApiKey();
     }
 
@@ -39,11 +44,11 @@ abstract class BaseApiAction {
         $isValidate = true;
         $mainUserId = $this->getMainUserId();
         if(empty($mainUserId))
-            throw new DevtodevException("Parameter 'mainUserId' is missing");
+            throw new ApiException("Parameter 'mainUserId' is missing");
 
         $actionCode = $this->getActionCode();
         if(empty($actionCode))
-            throw new DevtodevException("Parameter 'actionCode' is missing");
+            throw new ApiException("Parameter 'actionCode' is missing");
 
         return $isValidate;
     }
@@ -60,14 +65,14 @@ abstract class BaseApiAction {
             $this->isValidate = ($this->validate() && $this->validateParams());
             if($this->isValidate) {
                 $this->buildRequestData();
-                $request = new ApiRequest();
+                $request = new Request();
                 $request->send($this->requestData);
             }
             else {
-                throw new DevtodevException("No valid params");
+                throw new ApiException("No valid params");
             }
-        } catch(DevtodevException $e) {
-            DevtodevStatApi::appendToErrors($e->getMessage());
+        } catch(ApiException $e) {
+            StatApi::appendToErrors($e->getMessage());
         }
     }
 }

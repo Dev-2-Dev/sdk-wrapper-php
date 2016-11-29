@@ -1,6 +1,10 @@
 <?php
 
-final class DevtodevStatApi {
+namespace Devtodev\StatApi;
+
+use Devtodev\StatApi\ApiAction\CustomEventAction;
+
+final class StatApi {
     private static $errors = [];
 
     public static function getErrors() {
@@ -19,7 +23,7 @@ final class DevtodevStatApi {
      * @param string params.main_user_id - devtodev main user id
      */
     public static function init($params = []) {
-        $configInstance = DevtodevConfig::getInstance();
+        $configInstance = Config::getInstance();
         $configInstance->setParams($params);
     }
 
