@@ -2,7 +2,7 @@
 
 namespace Devtodev\StatApi;
 
-use Devtodev\StatApi\ApiAction\CustomEventAction;
+use Devtodev\StatApi\ApiActions\CustomEventAction;
 
 final class ApiClient {
     private static $errors = [];

@@ -1,5 +1,5 @@
 <?php
-namespace Devtodev\StatApi\ApiAction;
+namespace Devtodev\StatApi\ApiActions;
 use Devtodev\StatApi\ApiException;
 use Devtodev\StatApi\Config;
 use Devtodev\StatApi\ApiClient;
