@@ -1,20 +1,37 @@
 <?php
 namespace Devtodev\StatApi\ApiActions;
+
 use Devtodev\StatApi\ApiException;
 use Devtodev\StatApi\ApiClient;
 
+/**
+ * Class CustomEventAction
+ *
+ * @package Devtodev\StatApi\ApiActions
+ */
 final class CustomEventAction extends BaseApiAction {
     const MAX_LENGTH_EVENT_NAME = 72;
     const MAX_LENGTH_PARAM_NAME = 32;
     const MAX_COUNT_PARAM = 10;
     const TYPE_STRING = 'string';
     const TYPE_DOUBLE = 'double';
+    /**
+     * @var string
+     */
     protected $eventName = '';
 
+    /**
+     * @return string
+     */
     public function getEventName() {
         return $this->eventName;
     }
 
+    /**
+     * @param string $eventName
+     *
+     * @throws ApiException
+     */
     public function setEventName($eventName = '') {
         $maxLength = self::MAX_LENGTH_EVENT_NAME;
         if(mb_strlen($eventName) <= $maxLength) {
@@ -25,10 +42,16 @@ final class CustomEventAction extends BaseApiAction {
         }
     }
 
+    /**
+     * @return string
+     */
     protected function getActionCode() {
         return 'ce';
     }
 
+    /**
+     * @return array
+     */
     private function getParamAvailableTypes() {
         return [
             self::TYPE_STRING,
@@ -36,6 +59,10 @@ final class CustomEventAction extends BaseApiAction {
         ];
     }
 
+    /**
+     * @return bool
+     * @throws ApiException
+     */
     protected function validateParams() {
         $this->validateParams = [];
         if(empty($this->eventName))
@@ -70,6 +97,9 @@ final class CustomEventAction extends BaseApiAction {
         return !empty($this->validateParams);
     }
 
+    /**
+     * @return void
+     */
     protected function buildRequestData() {
         $mainUserId = $this->getMainUserId();
         $actionCode = $this->getActionCode();

@@ -4,13 +4,24 @@ namespace Devtodev\StatApi;
 
 use Devtodev\StatApi\ApiActions\CustomEventAction;
 
+/**
+ * Class ApiClient
+ *
+ * @package Devtodev\StatApi
+ */
 final class ApiClient {
     private static $errors = [];
 
+    /**
+     * @return array
+     */
     public static function getErrors() {
         return self::$errors;
     }
 
+    /**
+     * @param string $errorText
+     */
     public static function appendToErrors($errorText = '') {
         self::$errors[] = $errorText;
     }
@@ -57,6 +68,5 @@ final class ApiClient {
         $customEventAction->run();
     }
 
-    public static function realPayment() {
-    }
+    public static function realPayment() {}
 }
