@@ -3,6 +3,7 @@
 namespace Devtodev\StatApi;
 
 use Devtodev\StatApi\ApiActions\CustomEventAction;
+use Devtodev\StatApi\ApiActions\UserInfoAction;
 
 /**
  * Class ApiClient
@@ -66,6 +67,30 @@ final class ApiClient {
         $customEventAction->setEventName($eventName);
         $customEventAction->setParams($eventParams);
         $customEventAction->run();
+    }
+
+    /**
+     * Send user info
+     *
+     * @param array $userInfoParams
+     * @param string userInfoParams.country - parameter country of a user (format ISO 3166-1 alpha-2)
+     * @param string userInfoParams.language - parameter language of a user (format ISO 639-1 (1998)
+     * @param string userInfoParams.ip - parameter user ip
+     * @param string userInfoParams.carrier - parameter name of a network operator
+     * @param int userInfoParams.isRooted - parameter rooted (jailbroken) device (1 - rooted)
+     * @param string userInfoParams.userAgent - parameter browser user-agent
+     */
+    public static function userInfo($userInfoParams = []){
+        $userInfoAction = new UserInfoAction();
+        $userInfoAction->setParams($userInfoParams);
+        $userInfoAction->run();
+    }
+
+    /**
+     * Send detail user info
+     */
+    public static function detailUserInfo($params = []){
+
     }
 
     public static function realPayment() {}
