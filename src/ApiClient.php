@@ -4,6 +4,7 @@ namespace Devtodev\StatApi;
 
 use Devtodev\StatApi\ApiActions\CustomEventAction;
 use Devtodev\StatApi\ApiActions\UserInfoAction;
+use Devtodev\StatApi\ApiActions\UserInfoDetailAction;
 
 /**
  * Class ApiClient
@@ -88,9 +89,30 @@ final class ApiClient {
 
     /**
      * Send detail user info
+     * @param array $userInfoDetailParams
+     * @param string userInfoDetailParams.age - user's age in years
+     * @param string userInfoDetailParams.cheater - true, if a user is a cheater.
+     * In case you have your own methods to detect cheaters, you can mark such users.
+     * Event records made by cheaters will be ignored when counting statistical metrics.
+     * @param string userInfoDetailParams.tester - true, if a user is a tester
+     * Attention! This marker cannot be removed through the SDK (It can not be set to false after true).
+     * Event records made by testers will be ignored when counting statistical metrics.
+     * @param string userInfoDetailParams.gender - user's sex 0-unknown, 1-male, 2-female
+     * @param int userInfoDetailParams.name - user's name
+     * @param string userInfoDetailParams.email - user's e-mail
+     * @param string userInfoDetailParams.phone - user's phone phone
+     * @param string userInfoDetailParams.photo - user's photo
+     *
+     * Custom characteristics of a user in a key-value format
+     * @param string|number|array|null userInfoDetailParams.youKey
+     *  "key1" : "stringValue",                //String value
+     *  "key2" : 1.54,                         //Number value
+     *  "key3" : [1,2,"something"]             //Array
      */
-    public static function detailUserInfo($params = []){
-
+    public static function userInfoDetail($userInfoDetailParams = []){
+        $userInfoDetailAction= new UserInfoDetailAction();
+        $userInfoDetailAction->setParams($userInfoDetailParams);
+        $userInfoDetailAction->run();
     }
 
     public static function realPayment() {}

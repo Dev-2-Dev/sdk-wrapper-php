@@ -2,17 +2,35 @@
 
 namespace Devtodev\StatApi\ApiActions;
 
-use Devtodev\StatApi\ApiException;
 use Devtodev\StatApi\ApiClient;
 
 final class UserInfoAction extends BaseApiAction {
+    /**
+     * @var string
+     */
     protected $country = '';
+    /**
+     * @var string
+     */
     protected $language = '';
+    /**
+     * @var string
+     */
     protected $ip = '';
+    /**
+     * @var string
+     */
     protected $carrier = '';
+    /**
+     * @var int
+     */
     protected $isRooted = 0;
+    /**
+     * @var string
+     */
     protected $userAgent = '';
-
+    
+    
     /**
      * @return string
      */
@@ -192,7 +210,6 @@ final class UserInfoAction extends BaseApiAction {
 
     /**
      * @return bool
-     * @throws ApiException
      */
     protected function validateParams() {
 
