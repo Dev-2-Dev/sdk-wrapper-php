@@ -238,7 +238,7 @@ final class UserInfoDetailAction extends BaseApiAction {
                 'phone' => $this->getPhone(),
                 'photo' => $this->getPhoto()
             ],
-            'tuimestamp' => $this->getTime()
+            'timestamp' => $this->getTime()
         ];
 
         if (!empty($this->customProperties))
