@@ -103,7 +103,7 @@ final class UserInfoAction extends BaseApiAction {
     private function getLocale() {
         $locale = '';
         if(!empty($_SERVER['HTTP_ACCEPT_LANGUAGE']))
-            $locale = Locale::acceptFromHttp($_SERVER['HTTP_ACCEPT_LANGUAGE']);
+            $locale = \Locale::acceptFromHttp($_SERVER['HTTP_ACCEPT_LANGUAGE']);
         return $locale;
     }
 
@@ -114,7 +114,7 @@ final class UserInfoAction extends BaseApiAction {
         $country = '';
         $locale = $this->getLocale();
         if(!empty($locale)) {
-            $country = Locale::getRegion($locale);
+            $country = \Locale::getRegion($locale);
         }
 
         return $country;
@@ -127,7 +127,7 @@ final class UserInfoAction extends BaseApiAction {
         $language = '';
         $locale = $this->getLocale();
         if(!empty($locale)) {
-            $language = Locale::getPrimaryLanguage($locale);
+            $language = \Locale::getPrimaryLanguage($locale);
         }
         return $language;
     }
