@@ -4,6 +4,11 @@ namespace Devtodev\StatApi\ApiActions;
 
 use Devtodev\StatApi\ApiClient;
 
+/**
+ * Class UserInfoAction
+ *
+ * @package Devtodev\StatApi\ApiActions
+ */
 final class UserInfoAction extends BaseApiAction {
     /**
      * @var string

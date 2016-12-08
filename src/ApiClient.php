@@ -5,6 +5,7 @@ namespace Devtodev\StatApi;
 use Devtodev\StatApi\ApiActions\CustomEventAction;
 use Devtodev\StatApi\ApiActions\UserInfoAction;
 use Devtodev\StatApi\ApiActions\UserInfoDetailAction;
+use Devtodev\StatApi\ApiActions\RealPaymentAction;
 
 /**
  * Class ApiClient
@@ -115,5 +116,22 @@ final class ApiClient {
         $userInfoDetailAction->run();
     }
 
-    public static function realPayment() {}
+    /**
+     * Register transactions made through the platform's payment system.
+     * 
+     * @param $transactionId string - transaction ID
+     * @param $productPrice float - product price (in user's currency)
+     * @param $productName string - product name
+     * @param $transactionCurrencyISOCode string - transaction currency (ISO 4217 format)
+     * @param $userLevel int - user level
+     */
+    public static function realPayment($transactionId = '', $productPrice = 0.0, $productName = '', $transactionCurrencyISOCode = '', $userLevel = 1) {
+        $realPaymentAction = new RealPaymentAction();
+        $realPaymentAction->setTransactionId($transactionId);
+        $realPaymentAction->setProductPrice($productPrice);
+        $realPaymentAction->setProductName($productName);
+        $realPaymentAction->setTransactionCurrencyISOCode($transactionCurrencyISOCode);
+        $realPaymentAction->setLevel($userLevel);
+        $realPaymentAction->run();
+    }
 }
