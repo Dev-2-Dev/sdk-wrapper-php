@@ -3,6 +3,7 @@
 namespace Devtodev\StatApi;
 
 use Devtodev\StatApi\ApiActions\CustomEventAction;
+use Devtodev\StatApi\ApiActions\TrackingAvailabilityAction;
 use Devtodev\StatApi\ApiActions\UserInfoAction;
 use Devtodev\StatApi\ApiActions\UserInfoDetailAction;
 use Devtodev\StatApi\ApiActions\RealPaymentAction;
@@ -133,5 +134,18 @@ final class ApiClient {
         $realPaymentAction->setTransactionCurrencyISOCode($transactionCurrencyISOCode);
         $realPaymentAction->setLevel($userLevel);
         $realPaymentAction->run();
+    }
+
+    /**
+     * The method of limiting the processing of user data. The right to be forgotten.
+     * use 'false' to erase user's personal data and stop collecting data of this user.
+     * 'true' if you want to resume data collection.
+     *
+     * @param $isTrackingAllowed boolean - tracking available
+     */
+    public static function setTrackingAvailability($isTrackingAllowed) {
+        $trackingAvailabilityAction = new TrackingAvailabilityAction();
+        $trackingAvailabilityAction->setIsTrackingAllowed($isTrackingAllowed);
+        $trackingAvailabilityAction->run();
     }
 }
