@@ -146,14 +146,13 @@ final class RealPaymentAction extends BaseApiAction {
         $actionData = [];
 
         $actionData['name'] = $this->getProductName();
-        $actionData['level'] = $this->getLevel();
-        $actionData['entries'] = [
+        $actionData['entries'] = [[
             'orderId' => $this->getTransactionId(),
             'price' => $this->getProductPrice(),
             'currencyCode' => $this->getTransactionCurrencyISOCode(),
-            'timestamp' => $this->getTime()
-        ];
-
+            'timestamp' => $this->getTime(),
+            'level' => $this->getLevel(),
+        ]];
         $this->requestData = [
             $mainUserId => [
                 $actionCode => [$actionData]
