@@ -8,7 +8,7 @@ namespace Devtodev\StatApi;
  */
 class Config {
     const API_BASE_URL = 'https://api.devtodev.com/stat';
-    const API_VERSION = '1.2';
+    const API_VERSION = '1';
     /**
      * @var
      */
