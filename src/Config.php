@@ -25,6 +25,11 @@ class Config {
      * @var string
      */
     private $mainUserId = '';
+    /**
+     * @var string
+     */
+    private $prevMainUserId;
+
 
     /**
      * @return mixed
@@ -94,6 +99,20 @@ class Config {
     }
 
     /**
+     * @param string $prevMainUserId
+     */
+    public function setPrevMainUserId($prevMainUserId= '' ) {
+        $this->prevMainUserId = $prevMainUserId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPrevMainUserId() {
+        return $this->prevMainUserId;
+    }
+
+    /**
      * @param array $config
      */
     public function setParams($config = []) {
@@ -103,6 +122,10 @@ class Config {
 
         if(isset($config['main_user_id'])) {
             $this->setMainUserId($config['main_user_id']);
+        }
+
+        if(isset($config['prev_main_user_id'])) {
+            $this->setPrevMainUserId($config['prev_main_user_id']);
         }
     }
 }

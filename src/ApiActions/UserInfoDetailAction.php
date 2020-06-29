@@ -245,9 +245,9 @@ final class UserInfoDetailAction extends BaseApiAction {
             $actionData['data'] = array_merge($actionData['data'], $this->getCustomProperties());
 
         $this->requestData = [
-            $mainUserId => [
+            $mainUserId => array_merge($this->buildBaseRequestData(), [
                 $actionCode => [$actionData]
-            ]
+            ]),
         ];
     }
 

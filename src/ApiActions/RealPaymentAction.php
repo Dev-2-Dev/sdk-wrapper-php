@@ -155,7 +155,9 @@ final class RealPaymentAction extends BaseApiAction {
         ]];
         $this->requestData = [
             $mainUserId => [
-                $actionCode => [$actionData]
+                $mainUserId => array_merge($this->buildBaseRequestData(), [
+                    $actionCode => [$actionData]
+                ]),
             ]
         ];
     }

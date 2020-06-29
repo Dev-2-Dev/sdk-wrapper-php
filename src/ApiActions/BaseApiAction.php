@@ -47,6 +47,13 @@ abstract class BaseApiAction {
     /**
      * @return mixed
      */
+    protected function getPrevMainUserId() {
+        return Config::getInstance()->getPrevMainUserId();
+    }
+
+    /**
+     * @return mixed
+     */
     protected function getApiBaseUrl() {
         return Config::getInstance()->getApiBaseUrl();
     }
@@ -113,6 +120,18 @@ abstract class BaseApiAction {
     protected abstract function buildRequestData();
 
     /**
+     * @return array
+     */
+    protected function buildBaseRequestData() {
+        $request = [];
+        $prevMainUserId = $this->getPrevMainUserId();
+        if(!empty($prevMainUserId)) {
+            $request['prev'] = $prevMainUserId;
+        }
+        return $request;
+    }
+
+    /**
      * Prepare and send data
      */
     public function run() {
@@ -121,6 +140,7 @@ abstract class BaseApiAction {
             $this->isValidate = ($this->validate() && $this->validateParams());
             if($this->isValidate) {
                 $this->buildRequestData();
+                var_dump($this->requestData);
                 $request = new Request();
                 $request->send($this->requestData);
             }

@@ -135,9 +135,9 @@ final class CustomEventAction extends BaseApiAction {
         ];
 
         $this->requestData = [
-            $mainUserId => [
+            $mainUserId => array_merge($this->buildBaseRequestData(), [
                 $actionCode => [$actionData]
-            ]
+            ]),
         ];
     }
 }
