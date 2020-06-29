@@ -109,7 +109,7 @@ class Config {
      * @return string
      */
     public function getPrevMainUserId() {
-        return $this->prevMainUserId;
+        return empty($this->prevMainUserId) ? $this->prevMainUserId : (string)$this->prevMainUserId;
     }
 
     /**
