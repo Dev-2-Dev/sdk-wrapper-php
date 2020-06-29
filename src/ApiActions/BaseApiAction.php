@@ -140,7 +140,6 @@ abstract class BaseApiAction {
             $this->isValidate = ($this->validate() && $this->validateParams());
             if($this->isValidate) {
                 $this->buildRequestData();
-                var_dump($this->requestData);
                 $request = new Request();
                 $request->send($this->requestData);
             }
