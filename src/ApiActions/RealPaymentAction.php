@@ -154,9 +154,9 @@ final class RealPaymentAction extends BaseApiAction {
             'level' => $this->getLevel(),
         ]];
         $this->requestData = [
-            $mainUserId => [
+            $mainUserId => array_merge($this->buildBaseRequestData(), [
                 $actionCode => [$actionData]
-            ]
+            ]),
         ];
     }
 }

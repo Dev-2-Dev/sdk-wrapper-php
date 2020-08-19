@@ -36,6 +36,7 @@ final class ApiClient {
      * @param array $params
      * @param string params.api_key - devtodev API key
      * @param string params.main_user_id - devtodev main user id
+     * @param string params.prev_main_user_id - devtodev prev main user id
      */
     public static function init($params = []) {
         $configInstance = Config::getInstance();

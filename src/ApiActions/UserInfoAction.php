@@ -271,9 +271,9 @@ final class UserInfoAction extends BaseApiAction {
         $actionData['userAgent'] = $userAgent;
 
         $this->requestData = [
-            $mainUserId => [
+            $mainUserId => array_merge($this->buildBaseRequestData(), [
                 $actionCode => [$actionData]
-            ]
+            ]),
         ];
     }
 }
