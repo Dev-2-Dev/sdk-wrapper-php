@@ -12,7 +12,7 @@ use Devtodev\StatApi\ApiClient;
 final class CustomEventAction extends BaseApiAction {
     const MAX_LENGTH_EVENT_NAME = 72;
     const MAX_LENGTH_PARAM_NAME = 32;
-    const MAX_COUNT_PARAM = 10;
+    const MAX_COUNT_PARAM = 20;
     const TYPE_STRING = 'string';
     const TYPE_DOUBLE = 'double';
     /**
