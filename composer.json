@@ -1,7 +1,7 @@
 {
   "name": "Dev-2-Dev/sdk-wrapper-php",
   "description": "Devtodev stat api PHP client.",
-  "version": "0.0.1",
+  "version": "1.0.1",
   "type": "library",
   "homepage": "https://www.devtodev.com/",
   "keywords": [
