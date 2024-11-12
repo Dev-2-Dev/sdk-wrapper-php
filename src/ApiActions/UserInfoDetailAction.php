@@ -174,14 +174,20 @@ final class UserInfoDetailAction extends BaseApiAction {
      * @internal param array $customProperties
      */
     public function addCustomProperty($propertyKey = '', $propertyValue = null) {
-        if(!empty($propertyKey) && !empty($propertyValue)){
-            if(is_string($propertyKey) && (is_string($propertyValue) || is_numeric($propertyValue)) || is_array($propertyValue) || is_null($propertyValue)) {
-                $this->customProperties[$propertyKey] = $propertyValue;
-            } else {
-                ApiClient::appendToErrors("User custom property. Type of property value is not supported.");
-            }
-        } else {
+        if(empty($propertyKey)) {
             ApiClient::appendToErrors("User custom property. Empty key.");
+            return;
+        }
+
+        if(!is_string($propertyKey)) {
+            ApiClient::appendToErrors("User custom property. Type of property key is not supported.");
+            return;
+        }
+
+        if(is_string($propertyValue) || is_numeric($propertyValue) || is_array($propertyValue) || is_null($propertyValue)) {
+            $this->customProperties[$propertyKey] = $propertyValue;
+        } else {
+            ApiClient::appendToErrors("User custom property ($propertyKey). Type of property value is not supported.");
         }
     }
 
